@@ -71,9 +71,14 @@ class _BotonesState extends State<Botones> {
           children: [
             Expanded(
                 child: Container(
-              alignment: AlignmentDirectional.bottomEnd,
+              //padding: EdgeInsets.zero,
+              //height: MediaQuery.of(context).size.height,
+              //alignment: AlignmentDirectional.bottomCenter,
               decoration: ThemeChanger.conteinerTheme(state),
               child: GridView.count(
+                padding: const EdgeInsets.only(
+                    top: 20, right: 10, left: 10, bottom: 20),
+                mainAxisSpacing: 11,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 4,
