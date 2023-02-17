@@ -10,7 +10,10 @@ class Calculadora extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(create: (context) => ThemeChanger(ThemeData.light()), child: MaterialAppWithTheme(),);
+    return ChangeNotifierProvider(
+      create: (context) => ThemeChanger(ThemeChanger.lightTheme()),
+      child: const MaterialAppWithTheme(),
+    );
   }
 }
 
@@ -21,13 +24,11 @@ class MaterialAppWithTheme extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final theme = Provider.of<ThemeChanger>(context);
 
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: theme.getTheme(),
-      home: const HomeScreen()
-    );
+        debugShowCheckedModeBanner: false,
+        theme: theme.getTheme(),
+        home: const HomeScreen());
   }
 }
