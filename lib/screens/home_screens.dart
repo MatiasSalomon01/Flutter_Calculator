@@ -22,6 +22,7 @@ class Botones extends StatefulWidget {
 
 class _BotonesState extends State<Botones> {
   bool state = true;
+  String num = "";
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeChanger>(context);
@@ -55,11 +56,11 @@ class _BotonesState extends State<Botones> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Column(
-                children: const [
-                  Text('500 x 500', style: TextStyle(fontSize: 20)),
+                children: [
+                  const Text("", style: TextStyle(fontSize: 20)),
                   Padding(
-                    padding: EdgeInsets.only(right: 25),
-                    child: Text('250.000', style: TextStyle(fontSize: 40)),
+                    padding: const EdgeInsets.only(right: 25),
+                    child: Text("$num", style: const TextStyle(fontSize: 40)),
                   )
                 ],
               ),
@@ -84,67 +85,131 @@ class _BotonesState extends State<Botones> {
                 crossAxisCount: 4,
                 children: [
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num = "";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('AC')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "+/-";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('+/-')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "%";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('%')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "/";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('/')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "7";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('7')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "8";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('8')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "9";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('9')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "X";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('X')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "4";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('4')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "5";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('5')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "6";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('6')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "-";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('-')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "1";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('1')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "2";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('2')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "3";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('3')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "+";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('+')),
                   TextButton(
@@ -152,15 +217,27 @@ class _BotonesState extends State<Botones> {
                       child: const Icon(Icons.replay_sharp),
                       onPressed: () {}),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "0";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('0')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += ".";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('.')),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          num += "=";
+                        });
+                      },
                       style: ThemeChanger.textButton(state),
                       child: const Text('='))
                 ],
