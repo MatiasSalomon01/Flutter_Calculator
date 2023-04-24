@@ -1,34 +1,17 @@
-import 'package:fl_calculator/screens/home_screens.dart';
-import 'package:fl_calculator/themes/theme.dart';
+import 'package:fl_calculator/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-void main() => runApp(const Calculadora());
+void main() => runApp(const MyApp());
 
-class Calculadora extends StatelessWidget {
-  const Calculadora({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ThemeChanger(ThemeChanger.lightTheme()),
-      child: const MaterialAppWithTheme(),
-    );
-  }
-}
-
-class MaterialAppWithTheme extends StatelessWidget {
-  const MaterialAppWithTheme({
-    super.key,
-  });
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeChanger>(context);
-
     return MaterialApp(
+        title: 'Material App',
         debugShowCheckedModeBanner: false,
-        theme: theme.getTheme(),
-        home: const HomeScreen());
+        initialRoute: 'home',
+        routes: {'home': (context) => const HomeScreen()});
   }
 }
