@@ -120,29 +120,29 @@ class FloatingActionButtonCustom extends StatelessWidget {
             );
             return;
           }
-          if (value == "+" ||
-              value == "-" ||
-              value == "x" ||
-              value == "/" ||
-              value == "=") {
+          if (value == "+" || value == "-" || value == "x" || value == "/") {
             inputProvider.arithmeticOperador = value;
 
-            if (value == "=") {
-              inputProvider.secondNumber = double.parse(inputProvider
-                  .controller.text
-                  .substring(inputProvider.controller.text.indexOf("+") + 1));
-
-              print(
-                  "Primer numero: ${inputProvider.firstNumber} ${inputProvider.arithmeticOperador} ${inputProvider.secondNumber}");
-              // if (inputProvider.arithmeticOperador == "+") {
-              //   print(inputProvider.firstNumber + inputProvider.secondNumber);
-              // }
-            }
             if (inputProvider.isFirstNumber == false) {
               inputProvider.firstNumber =
                   double.parse(inputProvider.controller.text);
             }
+          }
+
+          if (value == "=") {
+            inputProvider.secondNumber = double.parse(inputProvider
+                .controller.text
+                .substring(inputProvider.controller.text.indexOf("+") + 1));
             inputProvider.history = inputProvider.controller.text + value;
+            print(
+                "Primer numero: ${inputProvider.firstNumber} ${inputProvider.arithmeticOperador} ${inputProvider.secondNumber}");
+            if (inputProvider.arithmeticOperador == "+") {
+              inputProvider.resultado =
+                  inputProvider.firstNumber + inputProvider.secondNumber;
+              inputProvider.controller.text =
+                  inputProvider.resultado.toString();
+              return;
+            }
           }
           inputProvider.controller.text += value;
           // print(inputProvider.controller.text);
