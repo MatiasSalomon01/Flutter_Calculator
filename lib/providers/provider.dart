@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InputProvider extends ChangeNotifier {
-  TextEditingController _controller = TextEditingController(text: '');
+  final TextEditingController _controller = TextEditingController(text: '');
 
   double _firstNumber = 0;
   double _secondNumber = 0;
