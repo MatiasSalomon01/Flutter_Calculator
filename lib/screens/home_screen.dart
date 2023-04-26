@@ -1,4 +1,5 @@
 import 'package:fl_calculator/Helpers/helper.dart';
+import 'package:fl_calculator/constants/consts.dart';
 import 'package:fl_calculator/providers/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -111,55 +112,17 @@ class HomeScreen extends StatelessWidget {
                   color: const Color(0xff292929),
                   // color: Colors.red,
                   child: GridView.count(
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: const EdgeInsets.only(right: 10, left: 10, top: 5),
-                    mainAxisSpacing: 5,
-                    crossAxisSpacing: 5,
-                    crossAxisCount: 4,
-                    children: const [
-                      FloatingActionButtonCustom(value: 'C'),
-                      FloatingActionButtonCustom(value: '()'),
-                      FloatingActionButtonCustom(value: '%'),
-                      FloatingActionButtonCustom(value: '/'),
-                      FloatingActionButtonCustom(value: '7'),
-                      FloatingActionButtonCustom(value: '8'),
-                      FloatingActionButtonCustom(value: '9'),
-                      FloatingActionButtonCustom(value: 'x'),
-                      FloatingActionButtonCustom(value: '4'),
-                      FloatingActionButtonCustom(value: '5'),
-                      FloatingActionButtonCustom(value: '6'),
-                      FloatingActionButtonCustom(value: '-'),
-                      FloatingActionButtonCustom(value: '1'),
-                      FloatingActionButtonCustom(value: '2'),
-                      FloatingActionButtonCustom(value: '3'),
-                      FloatingActionButtonCustom(value: '+'),
-                      FloatingActionButtonCustom(value: '+/-'),
-                      FloatingActionButtonCustom(value: '0'),
-                      FloatingActionButtonCustom(value: ','),
-                      FloatingActionButtonCustom(value: '='),
-                    ],
-                  ),
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding:
+                          const EdgeInsets.only(right: 10, left: 10, top: 5),
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 5,
+                      crossAxisCount: 4,
+                      children: Constants.customButtons),
                 ),
               )
             ],
           ),
-          // SafeArea(
-          //   child: Container(
-          //     padding: EdgeInsets.all(5),
-          //     child: Builder(
-          //       builder: (context) => IconButton(
-          //         onPressed: () {
-          //           Scaffold.of(context).openDrawer();
-          //         },
-          //         icon: Icon(
-          //           Icons.menu,
-          //           color: Colors.white,
-          //           size: 32,
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );
@@ -168,14 +131,19 @@ class HomeScreen extends StatelessWidget {
 
 class FloatingActionButtonCustom extends StatelessWidget {
   final String value;
-  const FloatingActionButtonCustom({super.key, required this.value});
+  final Color color;
+  const FloatingActionButtonCustom({
+    super.key,
+    required this.value,
+    this.color = const Color.fromARGB(255, 77, 75, 75),
+  });
 
   @override
   Widget build(BuildContext context) {
     final inputProvider = Provider.of<InputProvider>(context);
 
     return FloatingActionButton(
-      backgroundColor: const Color.fromARGB(255, 77, 75, 75),
+      backgroundColor: color,
       highlightElevation: 0,
       elevation: 0,
       child: Text(value, style: const TextStyle(fontSize: 35)),
