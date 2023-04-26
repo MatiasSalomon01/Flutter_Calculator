@@ -30,7 +30,11 @@ class FloatingActionButtonCustom extends StatelessWidget {
             return;
           }
 
-          if (value == "+" || value == "-" || value == "x" || value == "/") {
+          if (value == "+" ||
+              value == "-" ||
+              value == "x" ||
+              value == "/" ||
+              value == "%") {
             Helper.setFirstNumberOperatorHistory(inputProvider, value);
             inputProvider.isFirstNumber = false;
             return;

@@ -13,8 +13,8 @@ class Buttons extends StatelessWidget {
       child: GridView.count(
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.only(right: 10, left: 10, top: 5),
-          mainAxisSpacing: 5,
-          crossAxisSpacing: 5,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
           crossAxisCount: 4,
           children: Constants.customButtons),
     );
