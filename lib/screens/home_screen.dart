@@ -61,7 +61,6 @@ class HomeScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               IconButton(
-                                splashColor: Colors.red,
                                 onPressed: () {
                                   try {
                                     var text = inputProvider.controller.text;
@@ -82,9 +81,12 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                     );
                                     inputProvider.controller.text =
-                                        Helper.formatNumber(double.parse(
-                                            inputProvider.controller.text
-                                                .replaceAll(",", "")));
+                                        Helper.formatNumber(
+                                      double.parse(
+                                        inputProvider.controller.text
+                                            .replaceAll(",", ""),
+                                      ),
+                                    );
                                     // ignore: empty_catches
                                   } catch (e) {}
                                 },
@@ -176,7 +178,6 @@ class FloatingActionButtonCustom extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 77, 75, 75),
       highlightElevation: 0,
       elevation: 0,
-      // child: const Icon(Icons.add, size: 35),
       child: Text(value, style: const TextStyle(fontSize: 35)),
       onPressed: () {
         if (value == "C") {
@@ -186,18 +187,25 @@ class FloatingActionButtonCustom extends StatelessWidget {
             Helper.showModal(context);
             return;
           }
+
           if (value == "+" || value == "-" || value == "x" || value == "/") {
             Helper.setFirstNumberOperatorHistory(inputProvider, value);
+            inputProvider.isFirstNumber = false;
             return;
           }
 
-          if (value == "=") {
+          if (value == "=" && inputProvider.isFirstNumber == true) return;
+
+          if (value == "=" && inputProvider.isFirstNumber == false) {
             Helper.calculateResult(inputProvider, value);
+            inputProvider.isFirstNumber = true;
             return;
           }
+
           inputProvider.controller.text += value;
           inputProvider.controller.text = Helper.formatNumber(
-              double.parse(inputProvider.controller.text.replaceAll(",", "")));
+            double.parse(inputProvider.controller.text.replaceAll(",", "")),
+          );
         }
       },
     );
