@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fl_calculator/Helpers/helper.dart';
 import 'package:fl_calculator/providers/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -111,49 +112,21 @@ class FloatingActionButtonCustom extends StatelessWidget {
           inputProvider.cleanInput();
         } else {
           if (inputProvider.controller.text.length >= 15) {
-            _showModal(context);
+            Helper.showModal(context);
             return;
           }
           if (value == "+" || value == "-" || value == "x" || value == "/") {
-            inputProvider.arithmeticOperador = value;
-
-            inputProvider.firstNumber =
-                double.parse(inputProvider.controller.text);
-            inputProvider.history = inputProvider.controller.text + value;
-            inputProvider.controller.text = '';
+            Helper.setFirstNumberOperatorHistory(inputProvider, value);
             return;
           }
 
           if (value == "=") {
-            inputProvider.secondNumber = double.parse(inputProvider
-                .controller.text
-                .substring(inputProvider.controller.text.indexOf("+") + 1));
-            inputProvider.history += inputProvider.controller.text + value;
-            // print(
-            //     "Primer numero: ${inputProvider.firstNumber} ${inputProvider.arithmeticOperador} ${inputProvider.secondNumber}");
-            if (inputProvider.arithmeticOperador == "+") {
-              inputProvider.resultado =
-                  inputProvider.firstNumber + inputProvider.secondNumber;
-              if (inputProvider.resultado.toString().endsWith(".0")) {
-                inputProvider.controller.text =
-                    inputProvider.resultado.toString().replaceAll(".0", "");
-              }
-              return;
-            }
+            Helper.calculateResult(inputProvider, value);
+            return;
           }
           inputProvider.controller.text += value;
         }
       },
-    );
-  }
-
-  Future<dynamic> _showModal(BuildContext context) {
-    return showModalBottomSheet(
-      context: context,
-      builder: (context) => const Text(
-        'No se puede mayor de 15 digitos',
-        style: TextStyle(fontSize: 25),
-      ),
     );
   }
 }
