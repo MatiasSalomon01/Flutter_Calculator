@@ -59,7 +59,19 @@ class _ButtonHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        print('historial');
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              child: contentBox(context),
+            );
+          },
+        );
       },
       icon: const Icon(
         Icons.history,
@@ -68,6 +80,38 @@ class _ButtonHistory extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget contentBox(BuildContext context) {
+  return Container(
+    decoration: BoxDecoration(
+      color: const Color(0xff292929),
+      borderRadius: BorderRadius.circular(30),
+    ),
+    height: MediaQuery.of(context).size.height / 2,
+    child: Column(
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: Text(
+            'Historial',
+            style: TextStyle(color: Colors.white, fontSize: 30),
+          ),
+        ),
+        ListView.builder(
+          padding: const EdgeInsets.only(left: 25, top: 10),
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return Text(
+              '5x5=',
+              style: TextStyle(color: Colors.white, fontSize: 27),
+            );
+          },
+          itemCount: 1,
+        ),
+      ],
+    ),
+  );
 }
 
 class _BackSpaceButton extends StatelessWidget {
