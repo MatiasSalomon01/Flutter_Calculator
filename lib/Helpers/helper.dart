@@ -20,6 +20,7 @@ class Helper {
             controller.controller.text.indexOf(controller.arithmeticOperador) +
                 1));
     controller.history += controller.controller.text + operador;
+    controller.totalHistory.add(controller.history);
 
     if (controller.arithmeticOperador == "+") {
       controller.resultado = controller.firstNumber + controller.secondNumber;

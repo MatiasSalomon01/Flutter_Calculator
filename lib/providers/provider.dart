@@ -10,6 +10,7 @@ class InputProvider extends ChangeNotifier {
   String _history = '';
   bool _isFirstNumber = true;
   String _input = '';
+  List<String> _totalHistory = [];
 
   TextEditingController get controller => _controller;
 
@@ -26,6 +27,8 @@ class InputProvider extends ChangeNotifier {
   bool get isFirstNumber => _isFirstNumber;
 
   String get input => _input;
+
+  List<String> get totalHistory => _totalHistory;
 
   set controller(TextEditingController controller) {
     _controller.text = controller.text;
@@ -64,6 +67,11 @@ class InputProvider extends ChangeNotifier {
 
   set input(String value) {
     _input = value;
+    notifyListeners();
+  }
+
+  set totalHistory(List<String> value) {
+    _totalHistory = value;
     notifyListeners();
   }
 

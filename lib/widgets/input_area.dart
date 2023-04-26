@@ -83,6 +83,7 @@ class _ButtonHistory extends StatelessWidget {
 }
 
 Widget contentBox(BuildContext context) {
+  final inputProvider = Provider.of<InputProvider>(context);
   return Container(
     decoration: BoxDecoration(
       color: const Color(0xff292929),
@@ -98,16 +99,36 @@ Widget contentBox(BuildContext context) {
             style: TextStyle(color: Colors.white, fontSize: 30),
           ),
         ),
-        ListView.builder(
-          padding: const EdgeInsets.only(left: 25, top: 10),
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return Text(
-              '5x5=',
-              style: TextStyle(color: Colors.white, fontSize: 27),
-            );
-          },
-          itemCount: 1,
+        Expanded(
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics(
+                decelerationRate: ScrollDecelerationRate.fast),
+            padding: const EdgeInsets.only(left: 25, top: 10),
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return Text(
+                inputProvider.totalHistory[index],
+                style: const TextStyle(color: Colors.white, fontSize: 27),
+              );
+            },
+            itemCount: inputProvider.totalHistory.length,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 20, top: 10, bottom: 10),
+          child: TextButton(
+            onPressed: () {
+              inputProvider.totalHistory.clear();
+              Navigator.pop(context);
+            },
+            style: TextButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 50, 131, 127)),
+            child: const Text(
+              'Eliminar Historial',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          ),
         ),
       ],
     ),
