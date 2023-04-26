@@ -20,8 +20,51 @@ class InputArea extends StatelessWidget {
           _History(inputProvider: inputProvider),
           const SizedBox(height: 30),
           _TextFieldCustom(inputProvider: inputProvider),
-          _BackSpaceButton(inputProvider: inputProvider)
+          _BetweenButtons(inputProvider: inputProvider)
         ],
+      ),
+    );
+  }
+}
+
+class _BetweenButtons extends StatelessWidget {
+  const _BetweenButtons({
+    super.key,
+    required this.inputProvider,
+  });
+
+  final InputProvider inputProvider;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.only(left: 20, right: 25),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const _ButtonHistory(),
+            _BackSpaceButton(inputProvider: inputProvider),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ButtonHistory extends StatelessWidget {
+  const _ButtonHistory();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        print('historial');
+      },
+      icon: const Icon(
+        Icons.history,
+        color: Colors.white,
+        size: 30,
       ),
     );
   }
@@ -36,45 +79,33 @@ class _BackSpaceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.only(right: 20),
-        // color: Colors.red,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            IconButton(
-              onPressed: () {
-                try {
-                  var text = inputProvider.controller.text;
-                  var cursorPos =
-                      inputProvider.controller.selection.baseOffset < 0
-                          ? text.length
-                          : inputProvider.controller.selection.baseOffset;
-                  final newText = text.substring(0, cursorPos - 1) +
-                      text.substring(cursorPos);
-                  inputProvider.controller.value = TextEditingValue(
-                    text: newText,
-                    selection: TextSelection.collapsed(
-                      offset: cursorPos - 1,
-                    ),
-                  );
-                  inputProvider.controller.text = Helper.formatNumber(
-                    double.parse(
-                      inputProvider.controller.text.replaceAll(",", ""),
-                    ),
-                  );
-                  // ignore: empty_catches
-                } catch (e) {}
-              },
-              icon: const Icon(
-                Icons.backspace_outlined,
-                color: Colors.white,
-                size: 30,
-              ),
-            )
-          ],
-        ),
+    return IconButton(
+      onPressed: () {
+        try {
+          var text = inputProvider.controller.text;
+          var cursorPos = inputProvider.controller.selection.baseOffset < 0
+              ? text.length
+              : inputProvider.controller.selection.baseOffset;
+          final newText =
+              text.substring(0, cursorPos - 1) + text.substring(cursorPos);
+          inputProvider.controller.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(
+              offset: cursorPos - 1,
+            ),
+          );
+          inputProvider.controller.text = Helper.formatNumber(
+            double.parse(
+              inputProvider.controller.text.replaceAll(",", ""),
+            ),
+          );
+          // ignore: empty_catches
+        } catch (e) {}
+      },
+      icon: const Icon(
+        Icons.backspace_outlined,
+        color: Colors.white,
+        size: 30,
       ),
     );
   }
