@@ -8,7 +8,7 @@ class InputProvider extends ChangeNotifier {
   double _resultado = 0;
   String _arithmeticOperador = '';
   String _history = '';
-  bool _isFirstNumber = false;
+  bool _isFirstNumber = true;
 
   TextEditingController get controller => _controller;
 
