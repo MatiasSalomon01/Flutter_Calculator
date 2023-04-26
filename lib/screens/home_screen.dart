@@ -125,6 +125,8 @@ class FloatingActionButtonCustom extends StatelessWidget {
             return;
           }
           inputProvider.controller.text += value;
+          inputProvider.controller.text = Helper.formatNumber(
+              double.parse(inputProvider.controller.text.replaceAll(",", "")));
         }
       },
     );

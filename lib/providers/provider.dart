@@ -9,6 +9,7 @@ class InputProvider extends ChangeNotifier {
   String _arithmeticOperador = '';
   String _history = '';
   bool _isFirstNumber = true;
+  String _input = '';
 
   TextEditingController get controller => _controller;
 
@@ -23,6 +24,8 @@ class InputProvider extends ChangeNotifier {
   String get history => _history;
 
   bool get isFirstNumber => _isFirstNumber;
+
+  String get input => _input;
 
   set controller(TextEditingController controller) {
     _controller.text = controller.text;
@@ -56,6 +59,11 @@ class InputProvider extends ChangeNotifier {
 
   set isFirstNumber(bool value) {
     _isFirstNumber = value;
+    notifyListeners();
+  }
+
+  set input(String value) {
+    _input = value;
     notifyListeners();
   }
 
