@@ -26,7 +26,6 @@ class Helper {
 
   static void calculateResult(InputProvider controller, String operador) {
     controller.history += controller.controller.text + operador;
-    controller.totalHistory.add(controller.history);
 
     if (controller.arithmeticOperador == "+") {
       controller.resultado = controller.firstNumber + controller.secondNumber;
@@ -70,8 +69,8 @@ class Helper {
               ? formatNumber(controller.resultado)
               : formatNumberWithDecimal(controller.resultado);
     }
-
-    print('RESULTADO: ${controller.resultado}');
+    controller.totalHistory
+        .add(controller.history + controller.controller.text);
   }
 
   static Future<dynamic> showModal(BuildContext context) {
