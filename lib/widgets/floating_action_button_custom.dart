@@ -31,6 +31,11 @@ class FloatingActionButtonCustom extends StatelessWidget {
             return;
           }
 
+          if (value == ".") {
+            inputProvider.controller.text += value;
+            return;
+          }
+
           if (value == "+" ||
               value == "-" ||
               value == "x" ||
@@ -55,6 +60,7 @@ class FloatingActionButtonCustom extends StatelessWidget {
           }
 
           inputProvider.controller.text += value;
+          if (inputProvider.controller.text.endsWith('.0')) return;
           inputProvider.controller.text = Helper.formatNumber(
             double.parse(inputProvider.controller.text.replaceAll(",", "")),
           );

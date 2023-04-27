@@ -32,12 +32,18 @@ class Helper {
       controller.resultado = controller.firstNumber + controller.secondNumber;
       if (controller.resultado.toString().endsWith(".0")) {
         controller.controller.text = formatNumber(controller.resultado);
+      } else {
+        controller.controller.text =
+            formatNumberWithDecimal(controller.resultado);
       }
     }
     if (controller.arithmeticOperador == "-") {
       controller.resultado = controller.firstNumber - controller.secondNumber;
       if (controller.resultado.toString().endsWith(".0")) {
         controller.controller.text = formatNumber(controller.resultado);
+      } else {
+        controller.controller.text =
+            formatNumberWithDecimal(controller.resultado);
       }
     }
     if (controller.arithmeticOperador == "x") {
@@ -64,6 +70,8 @@ class Helper {
               ? formatNumber(controller.resultado)
               : formatNumberWithDecimal(controller.resultado);
     }
+
+    print('RESULTADO: ${controller.resultado}');
   }
 
   static Future<dynamic> showModal(BuildContext context) {
@@ -77,17 +85,39 @@ class Helper {
   }
 
   static String formatNumber(double value) {
+    var newValue = value.toString();
     NumberFormat myFormat = NumberFormat('#,###');
-    return myFormat.format(value);
+
+    if (newValue.endsWith(".0")) {
+      return myFormat.format(value);
+    } else {
+      return newValue;
+    }
   }
 
   static String formatNumberWithDecimal(double value) {
-    var floatNumber = value.toString().split(".")[1];
+    var floatNumber = value.toString().split(".");
     NumberFormat firstFormat = NumberFormat('#,###.0');
-    NumberFormat secondFormat = NumberFormat('#,###.00000000000');
+    NumberFormat secondFormat = NumberFormat('#,###.000000');
 
-    if (floatNumber.length > 1) {
-      return secondFormat.format(value);
+    if (floatNumber[1].length > 1) {
+      if (floatNumber[1].contains('000000')) {
+        var decimalNumber = floatNumber[1].replaceAll('0', '');
+        return '${floatNumber[0]}.$decimalNumber';
+        // return firstFormat.format(value);
+      }
+
+      if (floatNumber[1].length == 2) {
+        return '$value';
+      }
+
+      var result = secondFormat.format(value).split('.');
+      return '${result[0] == "" ? 0 : result[0]}.${result[1].replaceAll('0', '')}';
+
+      // var start = floatNumber.indexOf("0");
+      // var last = floatNumber.lastIndexOf("0");
+      // print(floatNumber);
+      // print(floatNumber.substring(start, last + 1));
     } else {
       return firstFormat.format(value);
     }
