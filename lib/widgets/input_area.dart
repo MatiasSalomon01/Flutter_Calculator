@@ -91,6 +91,7 @@ Widget contentBox(BuildContext context) {
     ),
     height: MediaQuery.of(context).size.height / 2,
     child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const Padding(
           padding: EdgeInsets.only(top: 10),
@@ -115,18 +116,23 @@ Widget contentBox(BuildContext context) {
             itemCount: inputProvider.totalHistory.length,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(right: 20, top: 10, bottom: 10),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: TextButton(
             onPressed: () {
               inputProvider.totalHistory.clear();
               Navigator.pop(context);
             },
             style: TextButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 50, 131, 127)),
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+              backgroundColor: const Color.fromARGB(255, 50, 131, 127),
+              shape: const StadiumBorder(
+                side: BorderSide(),
+              ),
+            ),
             child: const Text(
               'Eliminar Historial',
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),
         ),
