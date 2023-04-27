@@ -20,9 +20,11 @@ class FloatingActionButtonCustom extends StatelessWidget {
       backgroundColor: color,
       highlightElevation: 0,
       elevation: 0,
-      child: Text(value, style: const TextStyle(fontSize: 35)),
+      child: Text(value,
+          style: const TextStyle(fontSize: 38, fontFamily: 'Oxanium')),
       onPressed: () {
         if (value == '()' || value == '+/-') return;
+
         if (value == "C") {
           inputProvider.cleanInput();
         } else {
@@ -50,7 +52,9 @@ class FloatingActionButtonCustom extends StatelessWidget {
 
           if (value == "=" && inputProvider.isFirstNumber == false) {
             Helper.setSecondNumber(inputProvider);
+
             if (inputProvider.isSecondNumber == true) return;
+
             if (inputProvider.secondNumber.toString().isNotEmpty) {
               Helper.calculateResult(inputProvider, value);
               inputProvider.isFirstNumber = true;
@@ -60,7 +64,9 @@ class FloatingActionButtonCustom extends StatelessWidget {
           }
 
           inputProvider.controller.text += value;
+
           if (inputProvider.controller.text.endsWith('.0')) return;
+
           inputProvider.controller.text = Helper.formatNumber(
             double.parse(inputProvider.controller.text.replaceAll(",", "")),
           );

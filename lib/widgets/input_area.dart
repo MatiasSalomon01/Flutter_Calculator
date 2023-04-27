@@ -97,7 +97,8 @@ Widget contentBox(BuildContext context) {
           padding: EdgeInsets.symmetric(vertical: 10),
           child: Text(
             'Historial',
-            style: TextStyle(color: Colors.white, fontSize: 30),
+            style: TextStyle(
+                color: Colors.white, fontSize: 30, fontFamily: 'Oxanium'),
           ),
         ),
         Container(
@@ -115,7 +116,8 @@ Widget contentBox(BuildContext context) {
             itemBuilder: (context, index) {
               return Text(
                 inputProvider.totalHistory[index],
-                style: const TextStyle(color: Colors.white, fontSize: 27),
+                style: const TextStyle(
+                    color: Colors.white, fontSize: 27, fontFamily: 'Oxanium'),
               );
             },
             itemCount: inputProvider.totalHistory.length,
@@ -129,7 +131,7 @@ Widget contentBox(BuildContext context) {
               Navigator.pop(context);
             },
             style: TextButton.styleFrom(
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
               backgroundColor: const Color.fromARGB(255, 50, 131, 127),
               shape: const StadiumBorder(
                 side: BorderSide(),
@@ -137,7 +139,8 @@ Widget contentBox(BuildContext context) {
             ),
             child: const Text(
               'Eliminar Historial',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+              style: TextStyle(
+                  color: Colors.white, fontSize: 18, fontFamily: 'Oxanium'),
             ),
           ),
         ),
@@ -206,7 +209,8 @@ class _TextFieldCustom extends StatelessWidget {
         cursorColor: Colors.white,
         textAlign: TextAlign.end,
         decoration: const InputDecoration(border: InputBorder.none),
-        style: const TextStyle(color: Colors.white, fontSize: 50),
+        style: const TextStyle(
+            color: Colors.white, fontSize: 50, fontFamily: 'Oxanium'),
       ),
     );
   }
@@ -226,7 +230,9 @@ class _History extends StatelessWidget {
       child: Text(
         inputProvider.history,
         style: const TextStyle(
-            color: Color.fromARGB(255, 117, 117, 117), fontSize: 25),
+            color: Color.fromARGB(255, 117, 117, 117),
+            fontSize: 25,
+            fontFamily: 'Oxanium'),
       ),
     );
   }

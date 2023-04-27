@@ -79,7 +79,7 @@ class Helper {
       context: context,
       builder: (context) => const Text(
         'No se puede mayor de 15 digitos',
-        style: TextStyle(fontSize: 25),
+        style: TextStyle(fontSize: 25, fontFamily: 'Oxanium'),
       ),
     );
   }
