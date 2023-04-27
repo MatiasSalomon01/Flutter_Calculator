@@ -94,11 +94,16 @@ Widget contentBox(BuildContext context) {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const Padding(
-          padding: EdgeInsets.only(top: 10),
+          padding: EdgeInsets.symmetric(vertical: 10),
           child: Text(
             'Historial',
             style: TextStyle(color: Colors.white, fontSize: 30),
           ),
+        ),
+        Container(
+          height: 0.5,
+          color: Colors.grey,
+          margin: const EdgeInsets.symmetric(horizontal: 10),
         ),
         Expanded(
           child: ListView.builder(
