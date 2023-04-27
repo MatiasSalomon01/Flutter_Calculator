@@ -44,6 +44,9 @@ class Helper {
       controller.resultado = controller.firstNumber * controller.secondNumber;
       if (controller.resultado.toString().endsWith(".0")) {
         controller.controller.text = formatNumber(controller.resultado);
+      } else {
+        controller.controller.text =
+            formatNumberWithDecimal(controller.resultado);
       }
     }
     if (controller.arithmeticOperador == "/") {
@@ -79,7 +82,14 @@ class Helper {
   }
 
   static String formatNumberWithDecimal(double value) {
-    NumberFormat myFormat = NumberFormat('#,###.0');
-    return myFormat.format(value);
+    var floatNumber = value.toString().split(".")[1];
+    NumberFormat firstFormat = NumberFormat('#,###.0');
+    NumberFormat secondFormat = NumberFormat('#,###.00000000000');
+
+    if (floatNumber.length > 1) {
+      return secondFormat.format(value);
+    } else {
+      return firstFormat.format(value);
+    }
   }
 }
