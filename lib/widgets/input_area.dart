@@ -29,7 +29,6 @@ class InputArea extends StatelessWidget {
 
 class _BetweenButtons extends StatelessWidget {
   const _BetweenButtons({
-    super.key,
     required this.inputProvider,
   });
 
@@ -137,16 +136,21 @@ Widget contentBox(BuildContext context) {
                   var second = x[1];
                   var result = x[2];
                   var operatorr = '';
-                  if (inputProvider.totalHistory[index].contains('+'))
+                  if (inputProvider.totalHistory[index].contains('+')) {
                     operatorr = '+';
-                  if (inputProvider.totalHistory[index].contains('-'))
+                  }
+                  if (inputProvider.totalHistory[index].contains('-')) {
                     operatorr = '-';
-                  if (inputProvider.totalHistory[index].contains('/'))
+                  }
+                  if (inputProvider.totalHistory[index].contains('/')) {
                     operatorr = '/';
-                  if (inputProvider.totalHistory[index].contains('x'))
+                  }
+                  if (inputProvider.totalHistory[index].contains('x')) {
                     operatorr = 'x';
-                  if (inputProvider.totalHistory[index].contains('%'))
+                  }
+                  if (inputProvider.totalHistory[index].contains('%')) {
                     operatorr = '%';
+                  }
 
                   inputProvider.history = '$first$operatorr$second=';
                   inputProvider.controller.text = result;

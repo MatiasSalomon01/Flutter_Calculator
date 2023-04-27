@@ -118,7 +118,8 @@ class Helper {
       // print(floatNumber);
       // print(floatNumber.substring(start, last + 1));
     } else {
-      return firstFormat.format(value);
+      var result = firstFormat.format(value).split('.');
+      return '${result[0] == "" ? 0 : result[0]}.${result[1]}';
     }
   }
 }
