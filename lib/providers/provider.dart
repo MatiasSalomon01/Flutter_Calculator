@@ -9,6 +9,7 @@ class InputProvider extends ChangeNotifier {
   String _arithmeticOperador = '';
   String _history = '';
   bool _isFirstNumber = true;
+  bool _isSecondNumber = true;
   String _input = '';
   List<String> _totalHistory = [];
 
@@ -25,6 +26,8 @@ class InputProvider extends ChangeNotifier {
   String get history => _history;
 
   bool get isFirstNumber => _isFirstNumber;
+
+  bool get isSecondNumber => _isSecondNumber;
 
   String get input => _input;
 
@@ -62,6 +65,11 @@ class InputProvider extends ChangeNotifier {
 
   set isFirstNumber(bool value) {
     _isFirstNumber = value;
+    notifyListeners();
+  }
+
+  set isSecondNumber(bool value) {
+    _isSecondNumber = value;
     notifyListeners();
   }
 

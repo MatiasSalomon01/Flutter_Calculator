@@ -43,8 +43,12 @@ class FloatingActionButtonCustom extends StatelessWidget {
           if (value == "=" && inputProvider.isFirstNumber == true) return;
 
           if (value == "=" && inputProvider.isFirstNumber == false) {
-            Helper.calculateResult(inputProvider, value);
-            inputProvider.isFirstNumber = true;
+            Helper.setSecondNumber(inputProvider);
+
+            if (!inputProvider.secondNumber.toString().isEmpty) {
+              Helper.calculateResult(inputProvider, value);
+              inputProvider.isFirstNumber = true;
+            }
             return;
           }
 

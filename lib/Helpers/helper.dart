@@ -13,12 +13,17 @@ class Helper {
     controller.controller.text = '';
   }
 
-  static void calculateResult(InputProvider controller, String operador) {
-    controller.secondNumber = double.parse(controller.controller.text
-        .replaceAll(",", "")
-        .substring(
+  static void setSecondNumber(InputProvider controller) {
+    if (!controller.controller.text.isEmpty) {
+      controller.secondNumber = double.parse(
+        controller.controller.text.replaceAll(",", "").substring(
             controller.controller.text.indexOf(controller.arithmeticOperador) +
-                1));
+                1),
+      );
+    }
+  }
+
+  static void calculateResult(InputProvider controller, String operador) {
     controller.history += controller.controller.text + operador;
     controller.totalHistory.add(controller.history);
 
