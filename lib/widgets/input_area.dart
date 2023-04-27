@@ -110,14 +110,31 @@ Widget contentBox(BuildContext context) {
           child: ListView.builder(
             physics: const BouncingScrollPhysics(
                 decelerationRate: ScrollDecelerationRate.fast),
-            padding: const EdgeInsets.only(left: 25, top: 10),
+            padding: const EdgeInsets.only(top: 10),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return Text(
-                inputProvider.totalHistory[index],
-                style: const TextStyle(
-                    color: Colors.white, fontSize: 27, fontFamily: 'Oxanium'),
+              // return Text(
+              //   inputProvider.totalHistory[index],
+              //   style: const TextStyle(
+              //       color: Colors.white, fontSize: 27, fontFamily: 'Oxanium'),
+              // );
+              return ListTile(
+                // leading: Icon(
+                //   Icons.arrow_right,
+                //   color: Colors.white,
+                //   size: 35,
+                // ),
+                leading: Text('   -',
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 23,
+                        fontFamily: 'Oxanium')),
+                title: Text(
+                  inputProvider.totalHistory[index],
+                  style: const TextStyle(
+                      color: Colors.white, fontSize: 27, fontFamily: 'Oxanium'),
+                ),
               );
             },
             itemCount: inputProvider.totalHistory.length,
@@ -140,7 +157,7 @@ Widget contentBox(BuildContext context) {
             child: const Text(
               'Eliminar Historial',
               style: TextStyle(
-                  color: Colors.white, fontSize: 18, fontFamily: 'Oxanium'),
+                  color: Colors.white, fontSize: 20, fontFamily: 'Oxanium'),
             ),
           ),
         ),
