@@ -130,6 +130,28 @@ Widget contentBox(BuildContext context) {
                   style: const TextStyle(
                       color: Colors.white, fontSize: 27, fontFamily: 'Oxanium'),
                 ),
+                onTap: () {
+                  var x = inputProvider.totalHistory[index]
+                      .split(RegExp(r'[+\-x/%=]'));
+                  var first = x[0];
+                  var second = x[1];
+                  var result = x[2];
+                  var operatorr = '';
+                  if (inputProvider.totalHistory[index].contains('+'))
+                    operatorr = '+';
+                  if (inputProvider.totalHistory[index].contains('-'))
+                    operatorr = '-';
+                  if (inputProvider.totalHistory[index].contains('/'))
+                    operatorr = '/';
+                  if (inputProvider.totalHistory[index].contains('x'))
+                    operatorr = 'x';
+                  if (inputProvider.totalHistory[index].contains('%'))
+                    operatorr = '%';
+
+                  inputProvider.history = '$first$operatorr$second=';
+                  inputProvider.controller.text = result;
+                  Navigator.pop(context);
+                },
               );
             },
             itemCount: inputProvider.totalHistory.length,
