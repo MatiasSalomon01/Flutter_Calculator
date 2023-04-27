@@ -14,12 +14,13 @@ class Helper {
   }
 
   static void setSecondNumber(InputProvider controller) {
-    if (!controller.controller.text.isEmpty) {
+    if (controller.controller.text.isNotEmpty) {
       controller.secondNumber = double.parse(
         controller.controller.text.replaceAll(",", "").substring(
             controller.controller.text.indexOf(controller.arithmeticOperador) +
                 1),
       );
+      controller.isSecondNumber = false;
     }
   }
 
