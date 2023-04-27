@@ -120,16 +120,11 @@ Widget contentBox(BuildContext context) {
               //       color: Colors.white, fontSize: 27, fontFamily: 'Oxanium'),
               // );
               return ListTile(
-                // leading: Icon(
-                //   Icons.arrow_right,
-                //   color: Colors.white,
-                //   size: 35,
-                // ),
-                leading: Text('   -',
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 23,
-                        fontFamily: 'Oxanium')),
+                leading: const Text(
+                  '   -',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 23, fontFamily: 'Oxanium'),
+                ),
                 title: Text(
                   inputProvider.totalHistory[index],
                   style: const TextStyle(
