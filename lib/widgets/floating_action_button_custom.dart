@@ -28,9 +28,19 @@ class FloatingActionButtonCustom extends StatelessWidget {
         if (value == "C") {
           inputProvider.cleanInput();
         } else {
-          if (inputProvider.controller.text.length >= 15) {
+          // if (inputProvider.controller.text.length >= 15) {
+          //   inputProvider.isLarger = true;
+          //   // Helper.showModal(context);
+          //   return;
+          // }
+          if (inputProvider.controller.text.length >= 19) {
             Helper.showModal(context);
             return;
+          }
+          if (inputProvider.controller.text.length > 14) {
+            inputProvider.isLarger = true;
+          } else {
+            inputProvider.isLarger = false;
           }
 
           if (value == ".") {

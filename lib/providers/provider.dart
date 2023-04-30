@@ -12,6 +12,7 @@ class InputProvider extends ChangeNotifier {
   bool _isSecondNumber = true;
   String _input = '';
   List<String> _totalHistory = [];
+  bool _isLarger = false;
 
   TextEditingController get controller => _controller;
 
@@ -32,6 +33,8 @@ class InputProvider extends ChangeNotifier {
   String get input => _input;
 
   List<String> get totalHistory => _totalHistory;
+
+  bool get isLarger => _isLarger;
 
   set controller(TextEditingController controller) {
     _controller.text = controller.text;
@@ -80,6 +83,11 @@ class InputProvider extends ChangeNotifier {
 
   set totalHistory(List<String> value) {
     _totalHistory = value;
+    notifyListeners();
+  }
+
+  set isLarger(bool value) {
+    _isLarger = value;
     notifyListeners();
   }
 

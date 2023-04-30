@@ -232,8 +232,9 @@ class _TextFieldCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 15),
+    return Container(
+      // color: Colors.red,
+      margin: const EdgeInsets.only(right: 15, left: 15),
       child: TextField(
         controller: inputProvider.controller,
         keyboardType: TextInputType.none,
@@ -242,8 +243,10 @@ class _TextFieldCustom extends StatelessWidget {
         cursorColor: Colors.white,
         textAlign: TextAlign.end,
         decoration: const InputDecoration(border: InputBorder.none),
-        style: const TextStyle(
-            color: Colors.white, fontSize: 50, fontFamily: 'Oxanium'),
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: inputProvider.isLarger == true ? 36 : 46,
+            fontFamily: 'Oxanium'),
       ),
     );
   }
