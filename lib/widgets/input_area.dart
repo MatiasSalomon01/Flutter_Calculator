@@ -67,7 +67,7 @@ class _ButtonHistory extends StatelessWidget {
               ),
               elevation: 0,
               backgroundColor: Colors.transparent,
-              child: contentBox(context),
+              child: ContentHistory(context),
             );
           },
         );
@@ -81,7 +81,7 @@ class _ButtonHistory extends StatelessWidget {
   }
 }
 
-Widget contentBox(BuildContext context) {
+Widget ContentHistory(BuildContext context) {
   final inputProvider = Provider.of<InputProvider>(context);
   return Container(
     decoration: BoxDecoration(
@@ -119,15 +119,20 @@ Widget contentBox(BuildContext context) {
               //       color: Colors.white, fontSize: 27, fontFamily: 'Oxanium'),
               // );
               return ListTile(
-                leading: const Text(
-                  '   -',
-                  style: TextStyle(
-                      color: Colors.white, fontSize: 23, fontFamily: 'Oxanium'),
+                // leading: const Text(
+                //   '   -',
+                //   style: TextStyle(
+                //       color: Colors.white, fontSize: 23, fontFamily: 'Oxanium'),
+                // ),
+                leading: Icon(
+                  Icons.arrow_right,
+                  color: Colors.white,
+                  size: 35,
                 ),
                 title: Text(
                   inputProvider.totalHistory[index],
                   style: const TextStyle(
-                      color: Colors.white, fontSize: 27, fontFamily: 'Oxanium'),
+                      color: Colors.white, fontSize: 25, fontFamily: 'Oxanium'),
                 ),
                 onTap: () {
                   var x = inputProvider.totalHistory[index]
