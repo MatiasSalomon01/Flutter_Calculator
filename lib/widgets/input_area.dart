@@ -245,7 +245,7 @@ class _TextFieldCustom extends StatelessWidget {
         decoration: const InputDecoration(border: InputBorder.none),
         style: TextStyle(
             color: Colors.white,
-            fontSize: inputProvider.isLarger == true ? 36 : 46,
+            fontSize: inputProvider.isLarger == true ? 34 : 46,
             fontFamily: 'Oxanium'),
       ),
     );

@@ -28,12 +28,16 @@ class FloatingActionButtonCustom extends StatelessWidget {
         if (value == "C") {
           inputProvider.cleanInput();
         } else {
-          // if (inputProvider.controller.text.length >= 15) {
-          //   inputProvider.isLarger = true;
-          //   // Helper.showModal(context);
-          //   return;
-          // }
           if (inputProvider.controller.text.length >= 19) {
+            if (value == "+" ||
+                value == "-" ||
+                value == "x" ||
+                value == "/" ||
+                value == "%") {
+              Helper.setFirstNumberOperatorHistory(inputProvider, value);
+              inputProvider.isFirstNumber = false;
+              return;
+            }
             Helper.showModal(context);
             return;
           }
@@ -69,6 +73,11 @@ class FloatingActionButtonCustom extends StatelessWidget {
               Helper.calculateResult(inputProvider, value);
               inputProvider.isFirstNumber = true;
               inputProvider.isSecondNumber = true;
+              if (inputProvider.controller.text.length > 14) {
+                inputProvider.isLarger = true;
+              } else {
+                inputProvider.isLarger = false;
+              }
             }
             return;
           }
