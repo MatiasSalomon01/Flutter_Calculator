@@ -113,18 +113,8 @@ Widget ContentHistory(BuildContext context) {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              // return Text(
-              //   inputProvider.totalHistory[index],
-              //   style: const TextStyle(
-              //       color: Colors.white, fontSize: 27, fontFamily: 'Oxanium'),
-              // );
               return ListTile(
-                // leading: const Text(
-                //   '   -',
-                //   style: TextStyle(
-                //       color: Colors.white, fontSize: 23, fontFamily: 'Oxanium'),
-                // ),
-                leading: Icon(
+                leading: const Icon(
                   Icons.arrow_right,
                   color: Colors.white,
                   size: 35,
