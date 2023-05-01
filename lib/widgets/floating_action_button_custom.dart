@@ -79,6 +79,11 @@ class FloatingActionButtonCustom extends StatelessWidget {
                 inputProvider.isLarger = false;
               }
             }
+
+            if (inputProvider.controller.text.length >= 20) {
+              inputProvider.controller.text =
+                  inputProvider.resultado.toStringAsExponential();
+            }
             return;
           }
 

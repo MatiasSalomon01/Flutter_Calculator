@@ -8,15 +8,29 @@ class Buttons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      color: const Color(0xff292929),
+      // color: const Color(0xff292929),
       // color: Colors.red,
-      child: GridView.count(
-          physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.only(right: 10, left: 10, top: 5),
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
-          crossAxisCount: 4,
-          children: Constants.customButtons),
+      decoration: BoxDecoration(
+        color: const Color(0xff292929),
+        border: Border.all(width: 0, color: const Color(0xff292929)),
+      ),
+
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            child: GridView.count(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 15,
+              crossAxisCount: 4,
+              children: Constants.customButtons,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

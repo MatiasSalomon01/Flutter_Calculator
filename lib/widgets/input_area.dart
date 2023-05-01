@@ -12,15 +12,18 @@ class InputArea extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.only(top: 100),
-      color: const Color(0xff292929),
+      // color: const Color(0xff292929),
       // color: Colors.red,
+      decoration: BoxDecoration(
+          color: const Color(0xff292929),
+          border: Border.all(width: 0, color: Colors.transparent)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           _History(inputProvider: inputProvider),
-          const SizedBox(height: 30),
+          const SizedBox(height: 40),
           _TextFieldCustom(inputProvider: inputProvider),
-          _BetweenButtons(inputProvider: inputProvider)
+          _BetweenButtons(inputProvider: inputProvider),
         ],
       ),
     );
