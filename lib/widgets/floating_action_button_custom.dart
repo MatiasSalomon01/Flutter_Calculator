@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FloatingActionButtonCustom extends StatelessWidget {
-  final String value;
+  final dynamic content;
   final Color color;
+  final String value;
   const FloatingActionButtonCustom({
     super.key,
-    required this.value,
+    required this.content,
     this.color = const Color.fromARGB(255, 77, 75, 75),
+    required this.value,
   });
 
   @override
@@ -20,8 +22,7 @@ class FloatingActionButtonCustom extends StatelessWidget {
       backgroundColor: color,
       highlightElevation: 0,
       elevation: 0,
-      child: Text(value,
-          style: const TextStyle(fontSize: 38, fontFamily: 'Oxanium')),
+      child: content,
       onPressed: () {
         if (value == '()' || value == '+/-') return;
 

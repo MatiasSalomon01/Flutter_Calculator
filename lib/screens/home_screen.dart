@@ -11,9 +11,14 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Color(0xff292929),
       ),
       body: Column(
-        children: const [
-          Expanded(flex: 2, child: InputArea()),
-          Expanded(flex: 3, child: Buttons()),
+        children: [
+          const Expanded(flex: 2, child: InputArea()),
+          Container(
+            color: const Color(0xff292929),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Divider(thickness: 1, color: Colors.grey[700]),
+          ),
+          const Expanded(flex: 3, child: Buttons()),
         ],
       ),
     );
