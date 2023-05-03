@@ -73,7 +73,7 @@ class Constants {
     FloatingActionButtonCustom(
         content:
             Text('+/-', style: TextStyle(fontSize: 30, fontFamily: 'Oxanium')),
-        color: Color.fromARGB(255, 53, 53, 53),
+        color: Color(0xff212121),
         value: '+/-'),
     FloatingActionButtonCustom(
         content:

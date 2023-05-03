@@ -10,7 +10,8 @@ class FloatingActionButtonCustom extends StatelessWidget {
   const FloatingActionButtonCustom({
     super.key,
     required this.content,
-    this.color = const Color.fromARGB(255, 77, 75, 75),
+    // this.color = const Color.fromARGB(255, 77, 75, 75),
+    this.color = const Color(0xff2D2D2E),
     required this.value,
   });
 

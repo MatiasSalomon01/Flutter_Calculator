@@ -15,7 +15,7 @@ class InputArea extends StatelessWidget {
       // color: const Color(0xff292929),
       // color: Colors.red,
       decoration: BoxDecoration(
-          color: const Color(0xff292929),
+          color: const Color(0xff19191A),
           border: Border.all(width: 0, color: Colors.transparent)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
