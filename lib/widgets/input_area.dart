@@ -11,7 +11,7 @@ class InputArea extends StatelessWidget {
     final inputProvider = Provider.of<InputProvider>(context);
 
     return Container(
-      padding: const EdgeInsets.only(top: 100),
+      padding: const EdgeInsets.only(top: 120),
       // color: const Color(0xff292929),
       // color: Colors.red,
       decoration: BoxDecoration(
@@ -21,7 +21,7 @@ class InputArea extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           _History(inputProvider: inputProvider),
-          const SizedBox(height: 40),
+          const SizedBox(height: 30),
           _TextFieldCustom(inputProvider: inputProvider),
           _BetweenButtons(inputProvider: inputProvider),
         ],
