@@ -23,7 +23,7 @@ class Header extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
+            const Text(
               'Estandar',
               style: TextStyle(
                   color: Colors.white, fontSize: 28, fontFamily: 'Oxanium'),
