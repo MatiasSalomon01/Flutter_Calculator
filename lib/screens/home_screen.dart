@@ -1,5 +1,6 @@
 import 'package:fl_calculator/widgets/custom_divider.dart';
 import 'package:fl_calculator/widgets/header.dart';
+import 'package:fl_calculator/widgets/side_menu.dart';
 import 'package:fl_calculator/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +10,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff292929),
-      drawer: const Drawer(
-        backgroundColor: Color(0xff292929),
-      ),
+      backgroundColor: const Color(0xff292929),
+      drawer: const SideMenu(),
       body: Stack(
         children: [
           Column(
