@@ -1,5 +1,6 @@
 import 'package:fl_calculator/providers/provider.dart';
-import 'package:fl_calculator/screens/home_screen.dart';
+import 'package:fl_calculator/screens/standar_screen.dart';
+import 'package:fl_calculator/screens/scientific_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,8 +30,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       debugShowCheckedModeBanner: false,
-      initialRoute: 'home',
-      routes: {'home': (context) => const HomeScreen()},
+      initialRoute: 'standar',
+      routes: {
+        'standar': (context) => const StandarScreen(),
+        'scientific': (context) => const ScientificScreen(),
+      },
     );
   }
 }

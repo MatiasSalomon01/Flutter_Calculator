@@ -38,15 +38,16 @@ class SideMenu extends StatelessWidget {
             text: 'Estándar',
             icon: FaIcon(FontAwesomeIcons.calculator,
                 color: Colors.white, size: 28),
+            screen: 'standar',
           ),
           const _ListTileOption(
-            text: ' Científica',
-            icon: Icon(
-              Icons.science,
-              color: Colors.white,
-              size: 30,
-            ),
-          ),
+              text: ' Científica',
+              icon: Icon(
+                Icons.science,
+                color: Colors.white,
+                size: 30,
+              ),
+              screen: 'scientific'),
         ],
       ),
     );
@@ -54,10 +55,15 @@ class SideMenu extends StatelessWidget {
 }
 
 class _ListTileOption extends StatelessWidget {
-  const _ListTileOption({super.key, required this.text, required this.icon});
+  const _ListTileOption(
+      {super.key,
+      required this.text,
+      required this.icon,
+      required this.screen});
 
   final String text;
   final dynamic icon;
+  final String screen;
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +78,7 @@ class _ListTileOption extends StatelessWidget {
           style: const TextStyle(
               color: Colors.white, fontSize: 25, fontFamily: 'Oxanium'),
         ),
+        onTap: () => Navigator.popAndPushNamed(context, screen),
       ),
     );
   }
