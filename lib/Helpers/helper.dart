@@ -126,15 +126,27 @@ class Helper {
 
   static void calculateResultScientific(
       InputProvider inputProvider, String expression, String operador) {
-    Parser p = Parser();
-    Expression exp = p.parse(expression);
+    Parser parser = Parser();
+
+    if (expression.contains("%")) {
+      var newExpression = expression.split("%");
+      Expression x =
+          parser.parse("${newExpression[0]}*(${newExpression[1]}/100)");
+      double result = x.evaluate(EvaluationType.REAL, ContextModel());
+      inputProvider.history = result.toString().endsWith(".0")
+          ? formatNumber(result)
+          : formatNumberWithDecimal(result);
+
+      inputProvider.totalHistory.add("${expression}=${inputProvider.history}");
+      return;
+    }
+
+    Expression exp = parser.parse(expression);
     double result = exp.evaluate(EvaluationType.REAL, ContextModel());
-    // print(result);
     inputProvider.history = result.toString().endsWith(".0")
         ? formatNumber(result)
         : formatNumberWithDecimal(result);
 
-    inputProvider.totalHistory
-        .add(inputProvider.history + "=" + result.toString());
+    inputProvider.totalHistory.add("${expression}=${inputProvider.history}");
   }
 }

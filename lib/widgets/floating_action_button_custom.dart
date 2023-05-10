@@ -20,11 +20,12 @@ class FloatingActionButtonCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     final inputProvider = Provider.of<InputProvider>(context);
 
-    return FloatingActionButton(
-      heroTag: null,
-      backgroundColor: color,
-      highlightElevation: 0,
-      elevation: 0,
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        elevation: 0,
+        shape: const CircleBorder(),
+      ),
       child: content,
       onPressed: () {
         if (value == '()' || value == '+/-') return;
@@ -120,18 +121,32 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
   Widget build(BuildContext context) {
     var inputProvider = Provider.of<InputProvider>(context);
 
-    return FloatingActionButton(
-      heroTag: null,
-      backgroundColor: color,
-      highlightElevation: 0,
-      elevation: 0,
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        elevation: 0,
+        fixedSize: Size(50, 60),
+        shape: const CircleBorder(),
+      ),
       child: content,
       onPressed: () {
-        if (value == '()' || value == '+/-') return;
+        if (value == '+/-') return;
 
         if (value == "C") {
+          inputProvider.parenthesis = ")";
           inputProvider.cleanInput();
           return;
+        }
+
+        // if (inputProvider.controller.text.length >= 19) {
+        //   Helper.showModal(context);
+        //   return;
+        // }
+
+        if (inputProvider.controller.text.length > 14) {
+          inputProvider.isLarger = true;
+        } else {
+          inputProvider.isLarger = false;
         }
 
         if (value == "=") {
@@ -140,17 +155,34 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
           return;
         }
 
-        inputProvider.controller.text += value;
-        var x =
-            RegExp(r'\d+[+\-x\/]+\d+').hasMatch(inputProvider.controller.text);
+        if (value == "()") {
+          if (inputProvider.parenthesis == "(") {
+            inputProvider.controller.text += ")";
+            inputProvider.parenthesis = ")";
+            return;
+          }
+          inputProvider.controller.text += "(";
+          inputProvider.parenthesis = "(";
+          return;
+        }
 
-        var y = RegExp(r'^.*(?<![+\-x\/])$')
+        inputProvider.controller.text += value;
+        var x = RegExp(r'\d+[+\-x\/\%]+\d+')
             .hasMatch(inputProvider.controller.text);
 
-        if (x && y) {
-          var expression = inputProvider.controller.text.replaceAll("x", "*");
-          Helper.calculateResultScientific(inputProvider, expression, value);
-        }
+        var y = RegExp(r'^.*(?<![+\-x\/\%])$')
+            .hasMatch(inputProvider.controller.text);
+
+        try {
+          if (x && y) {
+            var expression = inputProvider.controller.text.replaceAll("x", "*");
+            Helper.calculateResultScientific(
+                inputProvider, expression.replaceAll(",", ""), value);
+          }
+          inputProvider.controller.text = Helper.formatNumber(
+            double.parse(inputProvider.controller.text.replaceAll(",", "")),
+          );
+        } catch (x) {}
       },
     );
   }

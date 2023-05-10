@@ -18,7 +18,6 @@ class Buttons extends StatelessWidget {
         color: const Color(0xff19191A),
         border: Border.all(width: 0, color: const Color(0xff19191A)),
       ),
-
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
