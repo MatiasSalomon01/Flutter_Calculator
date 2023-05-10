@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
-  const Header({Key? key}) : super(key: key);
+  const Header({Key? key, required this.title}) : super(key: key);
 
+  final String title;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,9 +24,9 @@ class Header extends StatelessWidget {
                 ),
               ),
             ),
-            const Text(
-              'Estandar',
-              style: TextStyle(
+            Text(
+              title,
+              style: const TextStyle(
                   color: Colors.white, fontSize: 28, fontFamily: 'Oxanium'),
             )
           ],

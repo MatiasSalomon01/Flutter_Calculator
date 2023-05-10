@@ -13,6 +13,7 @@ class InputProvider extends ChangeNotifier {
   String _input = '';
   List<String> _totalHistory = [];
   bool _isLarger = false;
+  String _currentScreen = "standar";
 
   TextEditingController get controller => _controller;
 
@@ -35,6 +36,8 @@ class InputProvider extends ChangeNotifier {
   List<String> get totalHistory => _totalHistory;
 
   bool get isLarger => _isLarger;
+
+  String get currentScreen => _currentScreen;
 
   set controller(TextEditingController controller) {
     _controller.text = controller.text;
@@ -88,6 +91,11 @@ class InputProvider extends ChangeNotifier {
 
   set isLarger(bool value) {
     _isLarger = value;
+    notifyListeners();
+  }
+
+  set currentScreen(String value) {
+    _currentScreen = value;
     notifyListeners();
   }
 

@@ -20,6 +20,7 @@ class FloatingActionButtonCustom extends StatelessWidget {
     final inputProvider = Provider.of<InputProvider>(context);
 
     return FloatingActionButton(
+      heroTag: null,
       backgroundColor: color,
       highlightElevation: 0,
       elevation: 0,

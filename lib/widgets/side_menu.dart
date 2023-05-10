@@ -1,7 +1,10 @@
+import 'package:fl_calculator/providers/provider.dart';
+import 'package:fl_calculator/screens/standar_screen.dart';
 import 'package:fl_calculator/widgets/custom_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({Key? key}) : super(key: key);
@@ -67,6 +70,8 @@ class _ListTileOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<InputProvider>(context);
+
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       padding: text == 'Estándar' ? const EdgeInsets.only(left: 5) : null,
@@ -78,7 +83,14 @@ class _ListTileOption extends StatelessWidget {
           style: const TextStyle(
               color: Colors.white, fontSize: 25, fontFamily: 'Oxanium'),
         ),
-        onTap: () => Navigator.popAndPushNamed(context, screen),
+        onTap: () {
+          if (provider.currentScreen == screen) {
+            return Navigator.pop(context);
+          }
+
+          Navigator.pushReplacementNamed(context, screen);
+          provider.currentScreen = screen;
+        },
       ),
     );
   }

@@ -21,7 +21,7 @@ class StandarScreen extends StatelessWidget {
               Expanded(flex: 3, child: Buttons()),
             ],
           ),
-          const Header(),
+          const Header(title: "Estándar"),
         ],
       ),
     );

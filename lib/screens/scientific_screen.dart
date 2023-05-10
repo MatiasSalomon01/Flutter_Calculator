@@ -1,3 +1,4 @@
+import 'package:fl_calculator/widgets/side_menu.dart';
 import 'package:flutter/material.dart';
 
 class ScientificScreen extends StatelessWidget {
@@ -5,7 +6,9 @@ class ScientificScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(),
+      drawer: const SideMenu(),
       body: Center(
         child: Text('ScientificScreen'),
       ),
