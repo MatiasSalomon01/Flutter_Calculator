@@ -173,5 +173,45 @@ class Constants {
         content: FaIcon(FontAwesomeIcons.equals, size: 30),
         color: Color.fromARGB(255, 50, 131, 127),
         value: '='),
+    FloatingActionButtonCustom2(
+        content:
+            Text('0', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '0'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('.', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '.'),
+    FloatingActionButtonCustom2(
+        content: FaIcon(FontAwesomeIcons.equals, size: 30),
+        color: Color.fromARGB(255, 50, 131, 127),
+        value: '='),
+    FloatingActionButtonCustom2(
+        content:
+            Text('.', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '.'),
+    FloatingActionButtonCustom2(
+        content: FaIcon(FontAwesomeIcons.equals, size: 30),
+        color: Color.fromARGB(255, 50, 131, 127),
+        value: '='),
+    FloatingActionButtonCustom2(
+        content:
+            Text('0', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '0'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('.', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '.'),
+    FloatingActionButtonCustom2(
+        content: FaIcon(FontAwesomeIcons.equals, size: 30),
+        color: Color.fromARGB(255, 50, 131, 127),
+        value: '='),
+    FloatingActionButtonCustom2(
+        content:
+            Text('.', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '.'),
+    FloatingActionButtonCustom2(
+        content: FaIcon(FontAwesomeIcons.equals, size: 30),
+        color: Color.fromARGB(255, 50, 131, 127),
+        value: '=')
   ];
 }

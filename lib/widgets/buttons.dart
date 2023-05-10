@@ -28,7 +28,7 @@ class Buttons extends StatelessWidget {
               padding: const EdgeInsets.only(right: 20, left: 20),
               mainAxisSpacing: 10,
               crossAxisSpacing: 15,
-              crossAxisCount: 4,
+              crossAxisCount: provider.currentScreen == "standar" ? 4 : 5,
               children: provider.currentScreen == "standar"
                   ? Constants.customButtons
                   : Constants.customButtonsScientific,

@@ -1,3 +1,4 @@
+import 'package:fl_calculator/preferences/preferences.dart';
 import 'package:fl_calculator/providers/provider.dart';
 import 'package:fl_calculator/screens/standar_screen.dart';
 import 'package:fl_calculator/widgets/custom_divider.dart';
@@ -90,6 +91,7 @@ class _ListTileOption extends StatelessWidget {
 
           Navigator.pushReplacementNamed(context, screen);
           provider.currentScreen = screen;
+          Preferences.screen = screen;
         },
       ),
     );
