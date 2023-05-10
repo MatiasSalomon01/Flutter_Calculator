@@ -88,4 +88,90 @@ class Constants {
         color: Color.fromARGB(255, 50, 131, 127),
         value: '='),
   ];
+
+  static const List<Widget> customButtonsScientific = [
+    FloatingActionButtonCustom2(
+        content:
+            Text('C', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        color: Color.fromARGB(255, 105, 36, 36),
+        value: 'C'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('()', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        color: Color.fromARGB(255, 59, 99, 97),
+        value: '()'),
+    FloatingActionButtonCustom2(
+        content: FaIcon(FontAwesomeIcons.percent, size: 27),
+        color: Color.fromARGB(255, 59, 99, 97),
+        value: '%'),
+    FloatingActionButtonCustom2(
+        content: FaIcon(FontAwesomeIcons.divide, size: 30),
+        color: Color.fromARGB(255, 59, 99, 97),
+        value: '/'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('7', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '7'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('8', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '8'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('9', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '9'),
+    FloatingActionButtonCustom2(
+        content: FaIcon(FontAwesomeIcons.xmark, size: 30),
+        color: Color.fromARGB(255, 59, 99, 97),
+        value: 'x'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('4', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '4'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('5', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '5'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('6', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '6'),
+    FloatingActionButtonCustom2(
+        content: FaIcon(FontAwesomeIcons.minus, size: 30),
+        color: Color.fromARGB(255, 59, 99, 97),
+        value: '-'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('1', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '1'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('2', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '2'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('3', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '3'),
+    FloatingActionButtonCustom2(
+        content: FaIcon(FontAwesomeIcons.plus, size: 30),
+        color: Color.fromARGB(255, 59, 99, 97),
+        value: '+'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('+/-', style: TextStyle(fontSize: 30, fontFamily: 'Oxanium')),
+        color: Color(0xff212121),
+        value: '+/-'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('0', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '0'),
+    FloatingActionButtonCustom2(
+        content:
+            Text('.', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
+        value: '.'),
+    FloatingActionButtonCustom2(
+        content: FaIcon(FontAwesomeIcons.equals, size: 30),
+        color: Color.fromARGB(255, 50, 131, 127),
+        value: '='),
+  ];
 }

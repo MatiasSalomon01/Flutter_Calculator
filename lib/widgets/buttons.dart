@@ -1,11 +1,15 @@
 import 'package:fl_calculator/constants/consts.dart';
+import 'package:fl_calculator/providers/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Buttons extends StatelessWidget {
   const Buttons({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<InputProvider>(context);
+
     return Container(
       width: MediaQuery.of(context).size.width,
       // color: const Color(0xff292929),
@@ -26,7 +30,9 @@ class Buttons extends StatelessWidget {
               mainAxisSpacing: 10,
               crossAxisSpacing: 15,
               crossAxisCount: 4,
-              children: Constants.customButtons,
+              children: provider.currentScreen == "standar"
+                  ? Constants.customButtons
+                  : Constants.customButtonsScientific,
             ),
           ),
         ],

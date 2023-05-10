@@ -1,6 +1,7 @@
 import 'package:fl_calculator/Helpers/helper.dart';
 import 'package:fl_calculator/providers/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 import 'package:provider/provider.dart';
 
 class FloatingActionButtonCustom extends StatelessWidget {
@@ -97,6 +98,58 @@ class FloatingActionButtonCustom extends StatelessWidget {
           inputProvider.controller.text = Helper.formatNumber(
             double.parse(inputProvider.controller.text.replaceAll(",", "")),
           );
+        }
+      },
+    );
+  }
+}
+
+class FloatingActionButtonCustom2 extends StatelessWidget {
+  final dynamic content;
+  final Color color;
+  final String value;
+  const FloatingActionButtonCustom2({
+    super.key,
+    required this.content,
+    // this.color = const Color.fromARGB(255, 77, 75, 75),
+    this.color = const Color(0xff2D2D2E),
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    var inputProvider = Provider.of<InputProvider>(context);
+
+    return FloatingActionButton(
+      heroTag: null,
+      backgroundColor: color,
+      highlightElevation: 0,
+      elevation: 0,
+      child: content,
+      onPressed: () {
+        if (value == '()' || value == '+/-') return;
+
+        if (value == "C") {
+          inputProvider.cleanInput();
+          return;
+        }
+
+        if (value == "=") {
+          inputProvider.controller.text = inputProvider.history;
+          inputProvider.history = "";
+          return;
+        }
+
+        inputProvider.controller.text += value;
+        var x =
+            RegExp(r'\d+[+\-x\/]+\d+').hasMatch(inputProvider.controller.text);
+
+        var y = RegExp(r'^.*(?<![+\-x\/])$')
+            .hasMatch(inputProvider.controller.text);
+
+        if (x && y) {
+          var expression = inputProvider.controller.text.replaceAll("x", "*");
+          Helper.calculateResultScientific(inputProvider, expression, value);
         }
       },
     );

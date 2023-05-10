@@ -38,6 +38,7 @@ dependencies:
   provider: ^6.0.5
   intl: ^0.18.0
   font_awesome_flutter: ^10.4.0
+  math_expressions: ^2.4.0
 
 dev_dependencies:
   flutter_test:

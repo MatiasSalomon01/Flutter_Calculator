@@ -1,6 +1,7 @@
 import 'package:fl_calculator/providers/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 class Helper {
   static void setFirstNumberOperatorHistory(
@@ -121,5 +122,19 @@ class Helper {
       var result = firstFormat.format(value).split('.');
       return '${result[0] == "" ? 0 : result[0]}.${result[1]}';
     }
+  }
+
+  static void calculateResultScientific(
+      InputProvider inputProvider, String expression, String operador) {
+    Parser p = Parser();
+    Expression exp = p.parse(expression);
+    double result = exp.evaluate(EvaluationType.REAL, ContextModel());
+    // print(result);
+    inputProvider.history = result.toString().endsWith(".0")
+        ? formatNumber(result)
+        : formatNumberWithDecimal(result);
+
+    inputProvider.totalHistory
+        .add(inputProvider.history + "=" + result.toString());
   }
 }
