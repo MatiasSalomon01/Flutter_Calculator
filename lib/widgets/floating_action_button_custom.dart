@@ -1,6 +1,7 @@
 import 'package:fl_calculator/Helpers/helper.dart';
 import 'package:fl_calculator/providers/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'package:provider/provider.dart';
 
@@ -109,13 +110,42 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
   final dynamic content;
   final Color color;
   final String value;
-  const FloatingActionButtonCustom2({
+  FloatingActionButtonCustom2({
     super.key,
     required this.content,
     // this.color = const Color.fromARGB(255, 77, 75, 75),
     this.color = const Color(0xff2D2D2E),
     required this.value,
   });
+
+  final formatter = NumberFormat.decimalPattern();
+
+  void checkLength(InputProvider inputProvider) {
+    if (inputProvider.controller.text.length > 14) {
+      inputProvider.isLarger = true;
+    } else {
+      inputProvider.isLarger = false;
+    }
+  }
+
+  String formatExpression(String expression) {
+    return expression.replaceAll(',', '').replaceAllMapped(
+          RegExp(r'\d+(?:\.\d+)?'),
+          (match) => formatter.format(double.parse(match.group(0)!)),
+        );
+  }
+
+  void insertText(TextEditingController controller, String value) {
+    final currentPosition = controller.selection.baseOffset;
+    final textToInsert = value;
+    final newValue = controller.text.substring(0, currentPosition) +
+        textToInsert +
+        controller.text.substring(currentPosition);
+    controller.value = controller.value.copyWith(
+        text: newValue,
+        selection: TextSelection.collapsed(
+            offset: currentPosition + textToInsert.length));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,10 +159,13 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
       ),
       child: content,
       onPressed: () {
+        print(inputProvider.controller.selection.baseOffset);
         if (value == '+/-') return;
+        if (inputProvider.hasDecimal && value == ".") return;
 
         if (value == "C") {
           inputProvider.parenthesis = ")";
+          inputProvider.hasDecimal = false;
           inputProvider.cleanInput();
           return;
         }
@@ -142,45 +175,62 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
         //   return;
         // }
 
-        if (inputProvider.controller.text.length > 14) {
-          inputProvider.isLarger = true;
-        } else {
-          inputProvider.isLarger = false;
-        }
+        checkLength(inputProvider);
 
         if (value == "=") {
           inputProvider.controller.text = inputProvider.history;
           inputProvider.history = "";
+          checkLength(inputProvider);
           return;
         }
 
-        if (value == "()") {
-          if (inputProvider.parenthesis == "(") {
-            inputProvider.controller.text += ")";
-            inputProvider.parenthesis = ")";
-            return;
-          }
-          inputProvider.controller.text += "(";
-          inputProvider.parenthesis = "(";
+        // if (value == "()") {
+        //   if (inputProvider.parenthesis == "(") {
+        //     inputProvider.controller.text += ")";
+        //     inputProvider.parenthesis = ")";
+        //     return;
+        //   }
+        //   inputProvider.controller.text += "(";
+        //   inputProvider.parenthesis = "(";
+        //   return;
+        // }
+
+        if (value == '.') {
+          inputProvider.hasDecimal = true;
+          inputProvider.controller.text += value;
           return;
         }
 
         inputProvider.controller.text += value;
-        var x = RegExp(r'\d+[+\-x\/\%]+\d+')
-            .hasMatch(inputProvider.controller.text);
 
+        if (value == "+" ||
+            value == "-" ||
+            value == "x" ||
+            value == "/" ||
+            value == "%") {
+          inputProvider.hasDecimal = false;
+        }
+
+        var x = RegExp(r'\d+(?:\.\d+)?\s*[+\-x\/%]\s*\d+(?:\.\d+)?')
+            .hasMatch(inputProvider.controller.text);
+        // print("Primero: $x");
         var y = RegExp(r'^.*(?<![+\-x\/\%])$')
             .hasMatch(inputProvider.controller.text);
-
+        // print("Segundo: $y");
+        // if (x) {
+        //   inputProvider.hasDecimal = false;
+        // }
         try {
           if (x && y) {
             var expression = inputProvider.controller.text.replaceAll("x", "*");
             Helper.calculateResultScientific(
                 inputProvider, expression.replaceAll(",", ""), value);
           }
-          inputProvider.controller.text = Helper.formatNumber(
-            double.parse(inputProvider.controller.text.replaceAll(",", "")),
-          );
+          inputProvider.controller.text =
+              formatExpression(inputProvider.controller.text);
+          // inputProvider.controller.text = Helper.formatNumber(
+          //   double.parse(inputProvider.controller.text.replaceAll(",", "")),
+          // );
         } catch (x) {}
       },
     );

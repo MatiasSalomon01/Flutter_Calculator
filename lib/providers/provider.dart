@@ -15,6 +15,7 @@ class InputProvider extends ChangeNotifier {
   bool _isLarger = false;
   String _currentScreen = "";
   String _parenthesis = "";
+  bool _hasDecimal = false;
 
   TextEditingController get controller => _controller;
 
@@ -41,6 +42,8 @@ class InputProvider extends ChangeNotifier {
   String get currentScreen => _currentScreen;
 
   String get parenthesis => _parenthesis;
+
+  bool get hasDecimal => _hasDecimal;
 
   set controller(TextEditingController controller) {
     _controller.text = controller.text;
@@ -104,6 +107,11 @@ class InputProvider extends ChangeNotifier {
 
   set parenthesis(String value) {
     _parenthesis = value;
+    notifyListeners();
+  }
+
+  set hasDecimal(bool value) {
+    _hasDecimal = value;
     notifyListeners();
   }
 

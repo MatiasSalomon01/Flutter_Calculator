@@ -89,7 +89,7 @@ class Constants {
         value: '='),
   ];
 
-  static const List<Widget> scientificButtons = [
+  static List<Widget> scientificButtons = [
     FloatingActionButtonCustom2(
       content: Text('C', style: TextStyle(fontSize: 35, fontFamily: 'Oxanium')),
       value: 'C',

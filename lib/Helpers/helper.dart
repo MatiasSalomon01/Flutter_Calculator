@@ -140,12 +140,12 @@ class Helper {
       inputProvider.totalHistory.add("${expression}=${inputProvider.history}");
       return;
     }
-
     Expression exp = parser.parse(expression);
     double result = exp.evaluate(EvaluationType.REAL, ContextModel());
+
     inputProvider.history = result.toString().endsWith(".0")
         ? formatNumber(result)
-        : formatNumberWithDecimal(result);
+        : result.toString();
 
     inputProvider.totalHistory.add("${expression}=${inputProvider.history}");
   }
