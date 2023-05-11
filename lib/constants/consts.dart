@@ -107,7 +107,7 @@ class Constants {
     ),
     FloatingActionButtonCustom2(
       content:
-          Text('exp', style: TextStyle(fontSize: 15.5, fontFamily: 'Oxanium')),
+          Text('exp', style: TextStyle(fontSize: 13, fontFamily: 'Oxanium')),
       value: 'exp',
       color: Color.fromARGB(255, 59, 99, 97),
     ),
@@ -118,25 +118,25 @@ class Constants {
     ),
     FloatingActionButtonCustom2(
       content:
-          Text('sin', style: TextStyle(fontSize: 19.6, fontFamily: 'Oxanium')),
+          Text('sin', style: TextStyle(fontSize: 15, fontFamily: 'Oxanium')),
       value: 'sin',
       color: Color.fromARGB(255, 37, 54, 56),
     ),
     FloatingActionButtonCustom2(
       content:
-          Text('cos', style: TextStyle(fontSize: 16.39, fontFamily: 'Oxanium')),
+          Text('cos', style: TextStyle(fontSize: 15, fontFamily: 'Oxanium')),
       value: 'cos',
       color: Color.fromARGB(255, 37, 54, 56),
     ),
     FloatingActionButtonCustom2(
       content:
-          Text('tan', style: TextStyle(fontSize: 17, fontFamily: 'Oxanium')),
+          Text('tan', style: TextStyle(fontSize: 15, fontFamily: 'Oxanium')),
       value: 'tan',
       color: Color.fromARGB(255, 37, 54, 56),
     ),
     FloatingActionButtonCustom2(
       content:
-          Text('log', style: TextStyle(fontSize: 18, fontFamily: 'Oxanium')),
+          Text('log', style: TextStyle(fontSize: 15, fontFamily: 'Oxanium')),
       value: 'log',
       color: Color.fromARGB(255, 37, 54, 56),
     ),
@@ -147,7 +147,7 @@ class Constants {
     ),
     FloatingActionButtonCustom2(
       content:
-          Text('pi', style: TextStyle(fontSize: 17, fontFamily: 'Oxanium')),
+          Text('pi', style: TextStyle(fontSize: 15, fontFamily: 'Oxanium')),
       value: 'pi',
       color: Color.fromARGB(255, 37, 54, 56),
     ),
@@ -170,7 +170,7 @@ class Constants {
     ),
     FloatingActionButtonCustom2(
       content:
-          Text('rad', style: TextStyle(fontSize: 17, fontFamily: 'Oxanium')),
+          Text('rad', style: TextStyle(fontSize: 15, fontFamily: 'Oxanium')),
       value: 'rad',
       color: Color.fromARGB(255, 37, 54, 56),
     ),
@@ -193,7 +193,7 @@ class Constants {
     ),
     FloatingActionButtonCustom2(
       content:
-          Text('|x|', style: TextStyle(fontSize: 24, fontFamily: 'Oxanium')),
+          Text('|x|', style: TextStyle(fontSize: 15, fontFamily: 'Oxanium')),
       value: '|x|',
       color: Color.fromARGB(255, 37, 54, 56),
     ),
@@ -215,7 +215,7 @@ class Constants {
       color: Color.fromARGB(255, 59, 99, 97),
     ),
     FloatingActionButtonCustom2(
-      content: Text('e', style: TextStyle(fontSize: 25, fontFamily: 'Oxanium')),
+      content: Text('e', style: TextStyle(fontSize: 15, fontFamily: 'Oxanium')),
       value: 'e',
       color: Color.fromARGB(255, 37, 54, 56),
     ),
