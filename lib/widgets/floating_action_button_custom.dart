@@ -125,7 +125,6 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
         elevation: 0,
-        fixedSize: Size(50, 60),
         shape: const CircleBorder(),
       ),
       child: content,

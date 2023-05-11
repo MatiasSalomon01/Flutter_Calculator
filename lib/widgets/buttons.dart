@@ -30,8 +30,8 @@ class Buttons extends StatelessWidget {
               crossAxisSpacing: 15,
               crossAxisCount: provider.currentScreen == "standar" ? 4 : 5,
               children: provider.currentScreen == "standar"
-                  ? Constants.customButtons
-                  : Constants.customButtonsScientific,
+                  ? Constants.standarButtons
+                  : Constants.scientificButtons,
             ),
           ),
         ],
