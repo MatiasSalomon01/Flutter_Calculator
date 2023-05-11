@@ -42,6 +42,19 @@ class MyApp extends StatelessWidget {
         'scientific': (context) => const ScientificScreen(),
         'checking': (context) => const CheckingScreen()
       },
+      // home: FutureBuilder(
+      //   future: Preferences.init(),
+      //   builder: (context, snapshot) {},
+      // ),
     );
   }
+
+  // String method(BuildContext context) {
+  //   if (Preferences.screen.isEmpty) {
+  //     return 'standar';
+  //   }
+  //   var screen = Preferences.screen;
+  //   Provider.of<InputProvider>(context, listen: false).currentScreen = screen;
+  //   return screen;
+  // }
 }

@@ -13,7 +13,7 @@ class InputProvider extends ChangeNotifier {
   String _input = '';
   List<String> _totalHistory = [];
   bool _isLarger = false;
-  String _currentScreen = "standar";
+  String _currentScreen = "";
   String _parenthesis = "";
 
   TextEditingController get controller => _controller;

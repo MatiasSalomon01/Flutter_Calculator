@@ -1,29 +1,10 @@
 import 'package:fl_calculator/preferences/preferences.dart';
-import 'package:fl_calculator/screens/standar_screen.dart';
+import 'package:fl_calculator/providers/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class CheckingScreen extends StatefulWidget {
-  const CheckingScreen({Key? key}) : super(key: key);
-
-  @override
-  State<CheckingScreen> createState() => _CheckingScreenState();
-}
-
-class _CheckingScreenState extends State<CheckingScreen> {
-  // @override
-  // void initState() async {
-  //   super.initState();
-  //   await checkSavedScreen();
-  // }
-
-  // Future<void> checkSavedScreen() async {
-  //   if (Preferences.screen != '') {
-  //     //   Navigator.pushReplacementNamed(context, Preferences.screen);
-  //     // }
-
-  //     Navigator.pushReplacementNamed(context, Preferences.screen);
-  //   }
-  // }
+class CheckingScreen extends StatelessWidget {
+  const CheckingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +12,18 @@ class _CheckingScreenState extends State<CheckingScreen> {
       backgroundColor: const Color(0xff19191A),
       body: Center(
         child: FutureBuilder(
-          // future: checkSavedScreen(),
+          future: Preferences.init(),
           builder: (context, snapshot) {
             if (Preferences.screen != '') {
               Future.microtask(() {
                 Navigator.pushReplacementNamed(context, Preferences.screen);
               });
+            } else {
+              Future.microtask(() {
+                Navigator.pushReplacementNamed(context, 'standar');
+              });
             }
-            return CircularProgressIndicator(
+            return const CircularProgressIndicator(
               color: Colors.grey,
             );
           },
