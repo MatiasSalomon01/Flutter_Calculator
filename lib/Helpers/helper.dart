@@ -137,7 +137,7 @@ class Helper {
           ? formatNumber(result)
           : formatNumberWithDecimal(result);
 
-      inputProvider.totalHistory.add("${expression}=${inputProvider.history}");
+      // inputProvider.totalHistory.add("${expression}=${inputProvider.history}");
       return;
     }
     Expression exp = parser.parse(expression);
@@ -147,6 +147,12 @@ class Helper {
         ? formatNumber(result)
         : result.toString();
 
-    inputProvider.totalHistory.add("${expression}=${inputProvider.history}");
+    // inputProvider.totalHistory.add("${expression}=${inputProvider.history}");
+  }
+
+  static void saveHistory(InputProvider inputProvider) {
+    inputProvider.totalHistory
+        .add("${inputProvider.controller.text}=${inputProvider.history}");
+    // print(inputProvider.controller.text);
   }
 }

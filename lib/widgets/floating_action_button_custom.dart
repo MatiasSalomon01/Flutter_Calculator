@@ -138,11 +138,12 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
   void insertText(TextEditingController controller, String value) {
     final currentPosition = controller.selection.baseOffset;
     final textToInsert = value;
-    final newValue = controller.text.substring(0, currentPosition) +
-        textToInsert +
-        controller.text.substring(currentPosition);
+    final newValue =
+        controller.text.substring(0, currentPosition).replaceAll(",", "") +
+            textToInsert +
+            controller.text.substring(currentPosition).replaceAll(",", "");
     controller.value = controller.value.copyWith(
-        text: newValue,
+        text: formatExpression(newValue),
         selection: TextSelection.collapsed(
             offset: currentPosition + textToInsert.length));
   }
@@ -159,7 +160,6 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
       ),
       child: content,
       onPressed: () {
-        print(inputProvider.controller.selection.baseOffset);
         if (value == '+/-') return;
         if (inputProvider.hasDecimal && value == ".") return;
 
@@ -167,6 +167,10 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
           inputProvider.parenthesis = ")";
           inputProvider.hasDecimal = false;
           inputProvider.cleanInput();
+          return;
+        }
+        if (inputProvider.controller.selection.baseOffset != -1) {
+          insertText(inputProvider.controller, value);
           return;
         }
 
@@ -178,6 +182,7 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
         checkLength(inputProvider);
 
         if (value == "=") {
+          Helper.saveHistory(inputProvider);
           inputProvider.controller.text = inputProvider.history;
           inputProvider.history = "";
           checkLength(inputProvider);
