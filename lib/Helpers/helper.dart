@@ -136,8 +136,6 @@ class Helper {
       inputProvider.history = result.toString().endsWith(".0")
           ? formatNumber(result)
           : formatNumberWithDecimal(result);
-
-      // inputProvider.totalHistory.add("${expression}=${inputProvider.history}");
       return;
     }
     Expression exp = parser.parse(expression);
@@ -146,13 +144,40 @@ class Helper {
     inputProvider.history = result.toString().endsWith(".0")
         ? formatNumber(result)
         : result.toString();
-
-    // inputProvider.totalHistory.add("${expression}=${inputProvider.history}");
   }
 
   static void saveHistory(InputProvider inputProvider) {
     inputProvider.totalHistory
         .add("${inputProvider.controller.text}=${inputProvider.history}");
-    // print(inputProvider.controller.text);
+  }
+
+  static void calcular(InputProvider inputProvider, String value) {
+    try {
+      if (!inputProvider.textInserted || value.isEmpty) {
+        inputProvider.expression += value;
+      }
+      var x = RegExp(r'\d+(?:\.\d+)?\s*[+\-x\/%]\s*\d+(?:\.\d+)?')
+          .hasMatch(inputProvider.expression);
+      var y = RegExp(r'^.*(?<![+\-x\/\%])$').hasMatch(inputProvider.expression);
+
+      if (x && y) {
+        var expresion = inputProvider.expression.replaceAll("x", "*");
+        Helper.calculateResultScientific(
+            inputProvider, expresion.replaceAll(",", ""), value);
+      }
+      inputProvider.controller.text =
+          formatExpression(inputProvider.expression);
+      inputProvider.controller.selection =
+          TextSelection.collapsed(offset: inputProvider.cursorPosition);
+    } catch (e) {}
+  }
+
+  static String formatExpression(String expression) {
+    final formatter = NumberFormat.decimalPattern();
+
+    return expression.replaceAll(',', '').replaceAllMapped(
+          RegExp(r'\d+(?:\.\d+)?'),
+          (match) => formatter.format(double.parse(match.group(0)!)),
+        );
   }
 }

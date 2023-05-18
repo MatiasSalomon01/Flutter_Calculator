@@ -1,6 +1,7 @@
 import 'package:fl_calculator/Helpers/helper.dart';
 import 'package:fl_calculator/providers/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'package:provider/provider.dart';
@@ -118,8 +119,6 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
     required this.value,
   });
 
-  final formatter = NumberFormat.decimalPattern();
-
   void checkLength(InputProvider inputProvider) {
     if (inputProvider.controller.text.length > 14) {
       inputProvider.isLarger = true;
@@ -128,24 +127,19 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
     }
   }
 
-  String formatExpression(String expression) {
-    return expression.replaceAll(',', '').replaceAllMapped(
-          RegExp(r'\d+(?:\.\d+)?'),
-          (match) => formatter.format(double.parse(match.group(0)!)),
-        );
-  }
-
-  void insertText(TextEditingController controller, String value) {
+  String insertText(InputProvider inputProvider, controller, String value) {
     final currentPosition = controller.selection.baseOffset;
     final textToInsert = value;
     final newValue =
         controller.text.substring(0, currentPosition).replaceAll(",", "") +
             textToInsert +
             controller.text.substring(currentPosition).replaceAll(",", "");
-    controller.value = controller.value.copyWith(
-        text: formatExpression(newValue),
-        selection: TextSelection.collapsed(
-            offset: currentPosition + textToInsert.length));
+    controller.value =
+        controller.value.copyWith(text: Helper.formatExpression(newValue));
+    inputProvider.cursorPosition = currentPosition + 1;
+    // controller.selection = TextSelection.collapsed(offset: currentPosition + 1);
+
+    return newValue;
   }
 
   @override
@@ -164,49 +158,40 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
         if (inputProvider.hasDecimal && value == ".") return;
 
         if (value == "C") {
-          // inputProvider.parenthesis = ")";
           inputProvider.hasDecimal = false;
           inputProvider.cleanInput();
           return;
         }
-        if (inputProvider.controller.selection.baseOffset != -1) {
-          insertText(inputProvider.controller, value);
-          return;
-        }
-
-        // if (inputProvider.controller.text.length >= 19) {
-        //   Helper.showModal(context);
-        //   return;
-        // }
-
-        checkLength(inputProvider);
 
         if (value == "=") {
           Helper.saveHistory(inputProvider);
+          inputProvider.expression = inputProvider.history.replaceAll(",", "");
+          inputProvider.textInserted = false;
+          inputProvider.textDeleted = false;
+          inputProvider.cursorPosition = -1;
           inputProvider.controller.text = inputProvider.history;
           inputProvider.history = "";
           checkLength(inputProvider);
           return;
         }
 
-        // if (value == "()") {
-        //   if (inputProvider.parenthesis == "(") {
-        //     inputProvider.controller.text += ")";
-        //     inputProvider.parenthesis = ")";
-        //     return;
-        //   }
-        //   inputProvider.controller.text += "(";
-        //   inputProvider.parenthesis = "(";
-        //   return;
-        // }
+        if (inputProvider.controller.selection.baseOffset > 0) {
+          inputProvider.expression =
+              insertText(inputProvider, inputProvider.controller, value);
+          inputProvider.textInserted = true;
+          Helper.calcular(inputProvider, value);
+          return;
+        } else {
+          inputProvider.textInserted = false;
+        }
 
         if (value == '.') {
           inputProvider.hasDecimal = true;
-          inputProvider.controller.text += value;
+
+          inputProvider.expression += value;
+          inputProvider.controller.text = inputProvider.expression;
           return;
         }
-
-        inputProvider.controller.text += value;
 
         if (value == "+" ||
             value == "-" ||
@@ -216,29 +201,7 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
           inputProvider.hasDecimal = false;
         }
 
-        var x = RegExp(r'\d+(?:\.\d+)?\s*[+\-x\/%]\s*\d+(?:\.\d+)?')
-            .hasMatch(inputProvider.controller.text);
-        // print("Primero: $x");
-        var y = RegExp(r'^.*(?<![+\-x\/\%])$')
-            .hasMatch(inputProvider.controller.text);
-        // print("Segundo: $y");
-        // if (x) {
-        //   inputProvider.hasDecimal = false;
-        // }
-        // try {
-        if (x && y) {
-          var expression = inputProvider.controller.text.replaceAll("x", "*");
-          Helper.calculateResultScientific(
-              inputProvider, expression.replaceAll(",", ""), value);
-        }
-        inputProvider.controller.text =
-            formatExpression(inputProvider.controller.text);
-        // inputProvider.controller.text = Helper.formatNumber(
-        //   double.parse(inputProvider.controller.text.replaceAll(",", "")),
-        // );
-        // } catch (x) {
-        //   print(x);
-        // }
+        Helper.calcular(inputProvider, value);
       },
     );
   }
