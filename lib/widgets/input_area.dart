@@ -59,6 +59,7 @@ class _ButtonHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var inputProvider = Provider.of<InputProvider>(context);
     return IconButton(
       onPressed: () {
         showDialog(
@@ -73,7 +74,7 @@ class _ButtonHistory extends StatelessWidget {
               child: ContentHistory(context),
             );
           },
-        );
+        ).then((value) => print(inputProvider.controller.text));
       },
       icon: const Icon(
         Icons.history,
@@ -197,25 +198,29 @@ class _BackSpaceButton extends StatelessWidget {
     return IconButton(
       onPressed: () {
         try {
+          if (inputProvider.controller.text.length == 1) {
+            inputProvider.cleanInput();
+            return;
+          }
           var text = inputProvider.controller.text;
           var cursorPos = inputProvider.controller.selection.baseOffset < 0
               ? text.length
               : inputProvider.controller.selection.baseOffset;
+          inputProvider.cursorPosition = cursorPos - 1;
           final newText =
               text.substring(0, cursorPos - 1) + text.substring(cursorPos);
-          inputProvider.controller.value = TextEditingValue(
-            text: newText,
-            selection: TextSelection.collapsed(
-              offset: cursorPos - 1,
-            ),
-          );
+          inputProvider.controller.value = TextEditingValue(text: newText);
+          inputProvider.expression =
+              inputProvider.controller.text.replaceAll(",", "");
           inputProvider.controller.text = Helper.formatNumber(
             double.parse(
               inputProvider.controller.text.replaceAll(",", ""),
             ),
           );
-          // ignore: empty_catches
         } catch (e) {}
+        Helper.calcular(inputProvider, '');
+        inputProvider.controller.selection =
+            TextSelection.collapsed(offset: inputProvider.cursorPosition);
       },
       icon: const Icon(
         Icons.backspace_outlined,

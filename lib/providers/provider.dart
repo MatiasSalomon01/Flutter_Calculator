@@ -16,6 +16,10 @@ class InputProvider extends ChangeNotifier {
   String _currentScreen = "";
   String _parenthesis = "";
   bool _hasDecimal = false;
+  String _expression = '';
+  bool _textInserted = false;
+  bool _textDeleted = false;
+  int _cursorPosition = -1;
 
   TextEditingController get controller => _controller;
 
@@ -44,6 +48,14 @@ class InputProvider extends ChangeNotifier {
   String get parenthesis => _parenthesis;
 
   bool get hasDecimal => _hasDecimal;
+
+  String get expression => _expression;
+
+  bool get textInserted => _textInserted;
+
+  bool get textDeleted => _textDeleted;
+
+  int get cursorPosition => _cursorPosition;
 
   set controller(TextEditingController controller) {
     _controller.text = controller.text;
@@ -115,6 +127,26 @@ class InputProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  set expression(String value) {
+    _expression = value;
+    notifyListeners();
+  }
+
+  set textInserted(bool value) {
+    _textInserted = value;
+    notifyListeners();
+  }
+
+  set textDeleted(bool value) {
+    _textDeleted = value;
+    notifyListeners();
+  }
+
+  set cursorPosition(int value) {
+    _cursorPosition = value;
+    notifyListeners();
+  }
+
   cleanInput() {
     _controller.text = '';
     _firstNumber = 0;
@@ -122,6 +154,13 @@ class InputProvider extends ChangeNotifier {
     _resultado = 0;
     _arithmeticOperador = '';
     _history = '';
+    _expression = '';
+    _cursorPosition = -1;
+    notifyListeners();
+  }
+
+  focusOnController(String currentValue) {
+    _controller.text = currentValue;
     notifyListeners();
   }
 }
