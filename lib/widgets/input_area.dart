@@ -59,6 +59,7 @@ class _ButtonHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var inputProvider = Provider.of<InputProvider>(context);
     return IconButton(
       onPressed: () {
         showDialog(
@@ -73,7 +74,7 @@ class _ButtonHistory extends StatelessWidget {
               child: ContentHistory(context),
             );
           },
-        );
+        ).then((value) => print(inputProvider.controller.text));
       },
       icon: const Icon(
         Icons.history,

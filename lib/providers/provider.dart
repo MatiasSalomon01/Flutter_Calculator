@@ -124,4 +124,9 @@ class InputProvider extends ChangeNotifier {
     _history = '';
     notifyListeners();
   }
+
+  focusOnController(String currentValue) {
+    _controller.text = currentValue;
+    notifyListeners();
+  }
 }

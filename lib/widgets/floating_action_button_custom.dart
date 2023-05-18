@@ -164,7 +164,7 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
         if (inputProvider.hasDecimal && value == ".") return;
 
         if (value == "C") {
-          inputProvider.parenthesis = ")";
+          // inputProvider.parenthesis = ")";
           inputProvider.hasDecimal = false;
           inputProvider.cleanInput();
           return;
@@ -225,18 +225,20 @@ class FloatingActionButtonCustom2 extends StatelessWidget {
         // if (x) {
         //   inputProvider.hasDecimal = false;
         // }
-        try {
-          if (x && y) {
-            var expression = inputProvider.controller.text.replaceAll("x", "*");
-            Helper.calculateResultScientific(
-                inputProvider, expression.replaceAll(",", ""), value);
-          }
-          inputProvider.controller.text =
-              formatExpression(inputProvider.controller.text);
-          // inputProvider.controller.text = Helper.formatNumber(
-          //   double.parse(inputProvider.controller.text.replaceAll(",", "")),
-          // );
-        } catch (x) {}
+        // try {
+        if (x && y) {
+          var expression = inputProvider.controller.text.replaceAll("x", "*");
+          Helper.calculateResultScientific(
+              inputProvider, expression.replaceAll(",", ""), value);
+        }
+        inputProvider.controller.text =
+            formatExpression(inputProvider.controller.text);
+        // inputProvider.controller.text = Helper.formatNumber(
+        //   double.parse(inputProvider.controller.text.replaceAll(",", "")),
+        // );
+        // } catch (x) {
+        //   print(x);
+        // }
       },
     );
   }
