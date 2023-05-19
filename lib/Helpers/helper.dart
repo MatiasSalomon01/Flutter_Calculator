@@ -2,6 +2,7 @@ import 'package:fl_calculator/providers/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'package:function_tree/function_tree.dart';
 
 class Helper {
   static void setFirstNumberOperatorHistory(
@@ -140,10 +141,11 @@ class Helper {
     }
     Expression exp = parser.parse(expression);
     double result = exp.evaluate(EvaluationType.REAL, ContextModel());
-
+    // print(result);
     inputProvider.history = result.toString().endsWith(".0")
         ? formatNumber(result)
         : result.toString();
+    aaaa(expression);
   }
 
   static void saveHistory(InputProvider inputProvider) {
@@ -152,12 +154,19 @@ class Helper {
   }
 
   static void calcular(InputProvider inputProvider, String value) {
+    var lista = ['cos', 'sin', 'tan', 'log', 'pi', 'rad'];
     try {
       if (!inputProvider.textInserted || value.isEmpty) {
         inputProvider.expression += value;
       }
       var x = RegExp(r'\d+(?:\.\d+)?\s*[+\-x\/%]\s*\d+(?:\.\d+)?')
           .hasMatch(inputProvider.expression);
+
+      // for (var keyWord in lista) {
+      //   if (inputProvider.expression.contains(keyWord)) {
+      //     print(keyWord);
+      //   }
+      // }
       var y = RegExp(r'^.*(?<![+\-x\/\%])$').hasMatch(inputProvider.expression);
 
       if (x && y) {
@@ -169,6 +178,7 @@ class Helper {
           formatExpression(inputProvider.expression);
       inputProvider.controller.selection =
           TextSelection.collapsed(offset: inputProvider.cursorPosition);
+      // ignore: empty_catches
     } catch (e) {}
   }
 
@@ -179,5 +189,13 @@ class Helper {
           RegExp(r'\d+(?:\.\d+)?'),
           (match) => formatter.format(double.parse(match.group(0)!)),
         );
+  }
+
+  static void aaaa(String expression) {
+    print(evaluarExpresion(expression));
+  }
+
+  static double evaluarExpresion(String expression) {
+    return expression.interpret().toDouble();
   }
 }

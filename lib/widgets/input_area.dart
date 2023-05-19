@@ -74,7 +74,7 @@ class _ButtonHistory extends StatelessWidget {
               child: ContentHistory(context),
             );
           },
-        ).then((value) => print(inputProvider.controller.text));
+        );
       },
       icon: const Icon(
         Icons.history,
